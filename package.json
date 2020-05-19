@@ -1,0 +1,24 @@
+{
+ "name": "snake-fp-ts",
+ "version": "0.1.0",
+ "description": "a study of snake written in functional style in typescript",
+ "main": "dist/index.js",
+ "repository": "https://github.com/avidrucker/study-fp-snake.git",
+ "author": "Avi <avidrucker@gmail.com>",
+ "license": "MIT",
+ "private": false,
+ "dependencies": {
+  "@types/node": "^14.0.1",
+  "typescript": "^3.9.2"
+ },
+ "scripts": {
+	"start": "tsc && node dist/index.js",
+	"test": "tsc && mocha dist/fp-util.test.js"
+ }, 
+ "devDependencies": {
+	"@types/chai": "^4.2.11",
+	"@types/mocha": "^7.0.2",
+	"chai": "^4.2.0",
+  "mocha": "^7.1.2"
+ }
+}
