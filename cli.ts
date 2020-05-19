@@ -5,13 +5,25 @@
 // which requires only constants for the
 // directional vectors
 
-// Constants
-const NORTH = { x: 0, y:-1 };
-const SOUTH = { x: 0, y: 1 };
-const EAST  = { x: 1, y: 0 };
-const WEST  = { x:-1, y: 0 };
+type Vector = { x: number, y: number };
 
-const initializeState = () => ({
+// Constants
+const NORTH: Vector = { x: 0, y:-1 };
+const SOUTH: Vector = { x: 0, y: 1 };
+const EAST: Vector  = { x: 1, y: 0 };
+const WEST: Vector  = { x:-1, y: 0 };
+
+type GameState = {
+	cols: number,
+	rows: number,
+	moves: Vector[],
+	snake: Point[],
+	apple: Point
+};
+
+type Point = { x: number, y: number };
+
+const initializeState = (): GameState => ({
 	cols: 20,
 	rows: 14,
 	moves: [EAST],
