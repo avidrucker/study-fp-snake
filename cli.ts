@@ -23,6 +23,7 @@ type GameState = {
 
 type Point = { x: number, y: number };
 
+// 1.1 we define the game state object here
 const initializeState = (): GameState => ({
 	cols: 20,
 	rows: 14,
@@ -30,3 +31,6 @@ const initializeState = (): GameState => ({
 	snake: [],
 	apple: {x: 16, y: 2}
 });
+
+// 1.1 we invoke the function to create the state here
+let State: GameState = initializeState();
