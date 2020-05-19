@@ -59,3 +59,8 @@ const Matrix = {
 } 
 
 const show = () => console.log('\x1Bc' + Matrix.toString(Matrix.fromState(State)));
+
+// 1.3 now that the show() function seems
+// to be implemented, let's try calling it:
+export const main = () =>
+	setInterval(() => { show()}, 100);
