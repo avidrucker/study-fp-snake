@@ -4,7 +4,9 @@
 // const k = (x: string) => (y: any): string => x;
 const k = (x: any) => (y: any) => x;
 
-// this function appears to map a function over a list of x values
+// This function appears to map a function over a list of x values...
+// Map is curried here to hoist function calls which enables map
+// to apply a set of functions, rather than just one function.
 const mapF = (f: any) => (xs: any[]) => xs.map(f);
 
 type Bar = (
@@ -19,17 +21,6 @@ const pipe = (...fns: Array<Bar>) =>
 // const pipe = (...fns: any[]) =>
 //   fns.reduce((prevFn, nextFn) => (value: any) => nextFn(prevFn(value)));
 
-// function rangeTest(size: number, startAt: number = 0) {
-// 	return [...Array(size).keys()].map(i => i + startAt);
-// }
-
-// const rangeTest2 = (size: number) => (startAt: number) =>
-// 	rangeTest(size, startAt);
-
-// todo: resolve bug:
-// There appears to be a syntax error, or some other error at "Array(m - n)"
-// which results in a `RangeError: Invalid array length`
-// Also, is this typed correctly as `: number[]` ?
 const range = (n: number) => (m: number) => 
 	Array.apply(null, Array(m - n)).map((_, i) => n + i); // what does "_" mean here?
 
