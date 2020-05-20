@@ -5,18 +5,18 @@ const base = require('./fp-util');
 // }
 
 // https://dev.to/kingdaro/indexing-objects-in-typescript-1cgi
-function hasOwnProperty<O extends object, K extends PropertyKey>(
-  obj: O,
-  key: K,
-): obj is O & Record<K, unknown> {
-  return Object.prototype.hasOwnProperty.call(obj, key);
-}
+// function hasOwnProperty<O extends object, K extends PropertyKey>(
+//   obj: O,
+//   key: K,
+// ): obj is O & Record<K, unknown> {
+//   return Object.prototype.hasOwnProperty.call(obj, key);
+// }
 
-Object.getOwnPropertyNames(base).map((p: any) => {
-	if(hasOwnProperty(global, p)) {
-		global[p] = base[p]
-	}
-});
+// Object.getOwnPropertyNames(base).map((p: any) => {
+// 	if(hasOwnProperty(global, p)) {
+// 		global[p] = base[p]
+// 	}
+// });
 
 // I define functions here that only matter for
 // input/output & interfacing with the terminal.
@@ -65,10 +65,13 @@ type Table = { cols: number, rows: number };
 const Matrix = {
 	make: (table: Table): Table => base.rep(base.rep('.')(table.cols))(table.rows),
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
-	fromState: (state: GameState): any[][] => base.pipe(
-		Matrix.make(state.table) // Matrix.make
+	fromState: (state: GameState): any[][] => base.pipe(() =>
+		Matrix.make(state.table) // Matrix.make(state.table)
 	)(state)
-} 
+} // TIL: When piping [functions], if there is only one function being passed,
+// keep in mind that a callback may be necessary `() => {}` to support the
+// sequence to be hoisted (in the current case above, we are creating an empty
+// function to start a simulated sequence)
 
 const show = () => 
 	console.log('\x1Bc' + Matrix.toString(Matrix.fromState(State)));
