@@ -47,5 +47,17 @@ const initializeState = (): GameState => ({
 
 // 2.13 adjust() depends on mapi(), so we define mapi() next
 
+// 2.14 Now that the above functions have been defined, perhaps we
+// may now add  Matrix.addSnake(state) to the fromState() pipe() call.
+// Let's try doing so and see what happens...
+// ...
+// No errors occur, and the board renders, but still, no snake to be seen.
+// What is necessary in order for us to get a snake on the board?
+
+// 2.15 Let's next look at what initializes a snake onto the board in a
+// particular position. nextHead() is the function which is responsible in
+// the original snake.js for initializing a new snake at row 2 column 2.
+// So, let's go ahead and create nextHead().
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
