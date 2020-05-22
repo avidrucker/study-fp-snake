@@ -59,5 +59,15 @@ const initializeState = (): GameState => ({
 // the original snake.js for initializing a new snake at row 2 column 2.
 // So, let's go ahead and create nextHead().
 
+// next values based on state
+const nextHead = (state: GameState) => state.snake.length === 0
+    ? { x: 2, y: 2}
+    : {
+        x: mod(state.table.cols)(state.snake[0].x),
+        y: mod(state.table.rows)(state.snake[0].y)
+    };
+
+// 2.16 Since nextHead() calls mod(), we define mod() next
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
