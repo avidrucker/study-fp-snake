@@ -1,6 +1,9 @@
 // I define here general utility "base" functions
 // to be used and/or extended elsewhere as needed.
 
+const adjust = (n: number) => (f: Bar) => (xs: any[]) =>
+	mapi((x: any) => (i: number) => i === n ? f(x) : x)(xs);
+
 // const k = (x: string) => (y: any): string => x;
 const k = (x: any) => (y: any) => x;
 
@@ -9,7 +12,7 @@ const k = (x: any) => (y: any) => x;
 // to apply a set of functions, rather than just one function.
 const mapF = (f: any) => (xs: any[]) => xs.map(f);
 
-type Bar = (
+export type Bar = (
   (data: string) => void
 );
 
@@ -24,5 +27,5 @@ const range = (n: number) => (m: number) =>
 
 const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 
-// adjust, dropFirst, dropLast, id, merge, mod, objOf, prop, rnd, spec
-module.exports = { k, mapF, pipe, range, rep }
+// dropFirst, dropLast, id, merge, mod, objOf, prop, rnd, spec
+module.exports = { adjust, k, mapF, pipe, range, rep }
