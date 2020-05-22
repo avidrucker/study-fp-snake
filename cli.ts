@@ -27,7 +27,8 @@ const Matrix = {
 	addSnake: (state: GameState): any => base.pipe(...base.mapF(Matrix.set('X'))(state.snake)),
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
 	fromState: (state: GameState): any[][] => base.pipe(() =>
-		Matrix.make(state.table) // Matrix.make(state.table)
+		Matrix.make(state.table), // Matrix.make(state.table)
+		Matrix.addSnake(state)
 	)(state)
 } // TIL: When piping [functions], if there is only one function being passed,
 // keep in mind that a callback may be necessary `() => {}` to support the
