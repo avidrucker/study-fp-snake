@@ -19,10 +19,6 @@ CREATE & RENDER SNAKE & MAKE IT MOVE
 - [ ] Dev enables user input to direct the snake to move up, down, left or right
 ---
 
-## Done Bucket
-
-- [ ]
-
 ## Road Map
 
 - Create the command line (terminal) game in its entirety
