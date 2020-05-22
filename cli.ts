@@ -21,6 +21,7 @@ let State: GameState = core.initializeState();
 
 const Matrix = {
 	make: (table: Table): Table => base.rep(base.rep('.')(table.cols))(table.rows),
+	addSnake: (state: GameState): any => base.pipe(...mapF(Matrix.set('X'))(state.snake)),
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
 	fromState: (state: GameState): any[][] => base.pipe(() =>
 		Matrix.make(state.table) // Matrix.make(state.table)
