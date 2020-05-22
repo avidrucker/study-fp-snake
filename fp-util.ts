@@ -14,6 +14,8 @@ const mapF = (f: any) => (xs: any[]) => xs.map(f);
 
 const mapi = (f: any) => (xs: any[]) => xs.map((x: any, i: number) => f(x)(i));
 
+const mod = (x: number) => (y: number) => ((y % x) + x) % x; // http://bit.ly/2oF4mQ7
+
 export type Bar = (
   (data: string) => void
 );
@@ -29,5 +31,5 @@ const range = (n: number) => (m: number) =>
 
 const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 
-// dropFirst, dropLast, id, merge, mod, objOf, prop, rnd, spec
-module.exports = { adjust, k, mapF, mapi, pipe, range, rep }
+// dropFirst, dropLast, id, merge, objOf, prop, rnd, spec
+module.exports = { adjust, k, mapF, mapi, mod, pipe, range, rep }
