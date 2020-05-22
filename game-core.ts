@@ -29,5 +29,15 @@ const initializeState = (): GameState => ({
 	apple: {x: 16, y: 2}
 });
 
+// 2. We now are ready to add the snake to the game.
+
+// 2.1 In order to figure out where best to start, let's look
+// at where the snake is stored/added (in/to the state).
+// Looking at the original cli.js, I can see that the
+// fromState() function takes in via pipe() the Matrix.addSnake()
+// function result with the state passed in as a parameter.
+// So, addSnake() is likely on the add list. I stub this now
+// inside of the Matrix function (table map) object.
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
