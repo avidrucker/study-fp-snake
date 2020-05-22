@@ -45,5 +45,7 @@ const initializeState = (): GameState => ({
 // 2.12 In order to set() we need to create the base adjust()
 // because it is called inside of set()
 
+// 2.13 adjust() depends on mapi(), so we define mapi() next
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
