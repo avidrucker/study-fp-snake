@@ -8,6 +8,10 @@
 - [x] Dev creates minimum state needed to render a board
 - [x] Dev creates an NxM board
 - [x] Dev renders an NxM board
+- [ ] Dev creates a snake in memory
+- [ ] Dev renders a snake onto the board at (2, 2)
+- [ ] Dev enables the snake to start moving to the right
+- [ ] Dev enables user input to direct the snake to move up, down, left or right
 
 ## Done Bucket
 
