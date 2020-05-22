@@ -63,8 +63,8 @@ const initializeState = (): GameState => ({
 const nextHead = (state: GameState) => state.snake.length === 0
     ? { x: 2, y: 2}
     : {
-        x: mod(state.table.cols)(state.snake[0].x),
-        y: mod(state.table.rows)(state.snake[0].y)
+        x: base.mod(state.table.cols)(state.snake[0].x),
+        y: base.mod(state.table.rows)(state.snake[0].y)
     };
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
