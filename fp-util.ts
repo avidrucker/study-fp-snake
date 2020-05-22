@@ -13,9 +13,7 @@ type Bar = (
   (data: string) => void
 );
 
-// todo: resolve error:
-// TypeError: f is not a function
-// attempt 1: https://stackoverflow.com/questions/12734660/a-typed-array-of-functions
+// resolve f is not a function bug: attempt 1: https://stackoverflow.com/questions/12734660/a-typed-array-of-functions
 const pipe = (...fns: Array<Bar>) =>
 	(x: any) => [...fns].reduce((acc, f: Bar) => f(acc), x); // : (data: string) => void
 // const pipe = (...fns: any[]) =>
