@@ -42,5 +42,8 @@ const initializeState = (): GameState => ({
 // 2.11 In order to addSnake() we need to create the base set()
 // because it is called inside of addSnake()
 
+// 2.12 In order to set() we need to create the base adjust()
+// because it is called inside of set()
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
