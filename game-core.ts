@@ -69,5 +69,34 @@ const nextHead = (state: GameState) => state.snake.length === 0
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
 
+// 2.17 We have defined nextHead() and mod() but since nextHead()
+// is not being called yet, we can explore in the original code
+// base to determine where we will be using it (ie. search for
+// explicit references/calls to nextHead()) ... There are a few
+// calls; in willEat(), in willCrash(), and in nextSnake(). Since
+// my goal is firstly to render the snake, I will create
+// nextSnake() first, though since I also see that nextSnake is
+// composed of willEat() and willCrash() (as well as nextHead(),
+// concat(), and dropLast()), I may as well define those as well.
+// I see that willEat() and willCrash() are composed of pointEq()
+// and find(), so we have our work cut out for us:
+// Next to define:
+// nextSnake()
+// - willCrash(), find(), pointEq(),
+// - willEat(), concat(), dropLast()
+// This is a lot, so ...
+
+// ... First, let's only worry about where nextSnake() is called
+// before we use the fully fleshed out function.
+const nextSnake = (state: GameState) => [];
+
+
+// const nextSnake = (state: GameState) => willCrash(state)
+//     ? []
+//     : (willEat(state)
+//         ? [nextHead(state)].concat(state.snake)
+//         : [nextHead(state)].concat(dropLast(state.snake))
+//     )
+
 // enqueue, next,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
