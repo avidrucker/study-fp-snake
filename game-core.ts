@@ -93,8 +93,8 @@ const nextSnake = (state: GameState) => [];
 // 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
 const next: GameState = base.spec({
     table: {
-        rows: prop('rows'),
-        cols: prop('cols')
+        rows: base.prop('rows'),
+        cols: base.prop('cols')
     },
     // moves: nextMoves,
     snake: nextSnake //,

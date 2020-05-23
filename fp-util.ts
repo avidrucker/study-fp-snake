@@ -29,6 +29,9 @@ const pipe = (...fns: Array<Bar>) =>
 // const pipe = (...fns: any[]) =>
 //   fns.reduce((prevFn, nextFn) => (value: any) => nextFn(prevFn(value)));
 
+// 2.20 the call to spec() takes in calls to prop(), so we build it next:
+const prop = (key: string) => (o: any) => o[key];
+
 const range = (n: number) => (m: number) => 
 	Array.apply(null, Array(m - n)).map((_, i) => n + i); // what does "_" mean here?
 
@@ -38,5 +41,5 @@ const spec = (o: any) => (x: any) => Object.keys(o)
 	.map(k => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// dropFirst, dropLast, id, merge, prop, rnd
-module.exports = { adjust, k, mapF, mapi, mod, objOf, pipe, range, rep, spec }
+// dropFirst, dropLast, id, merge, rnd
+module.exports = { adjust, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, spec }
