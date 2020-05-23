@@ -16,6 +16,9 @@ const mapi = (f: any) => (xs: any[]) => xs.map((x: any, i: number) => f(x)(i));
 
 const mod = (x: number) => (y: number) => ((y % x) + x) % x; // http://bit.ly/2oF4mQ7
 
+// 2.19 spec() is composed with objOf(), so we build it next:
+const objOf = (key: string) => (val: any) => ({ [key]: val});
+
 export type Bar = (
   (data: string) => void
 );
