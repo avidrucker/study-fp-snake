@@ -38,5 +38,5 @@ const spec = (o: any) => (x: any) => Object.keys(o)
 	.map(k => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// dropFirst, dropLast, id, merge, objOf, prop, rnd, spec
-module.exports = { adjust, k, mapF, mapi, mod, pipe, range, rep }
+// dropFirst, dropLast, id, merge, prop, rnd
+module.exports = { adjust, k, mapF, mapi, mod, objOf, pipe, range, rep, spec }
