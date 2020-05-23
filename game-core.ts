@@ -16,17 +16,17 @@ const WEST: Vector  = { x:-1, y: 0 };
 
 export type GameState = {
 	table: Table,
-	moves: Vector[],
+	// moves: Vector[],
 	snake: Point[],
-	apple: Point
+	// apple: Point
 };
 
 // 1.1 we define the game state object here
 const initializeState = (): GameState => ({
 	table: { cols: 20, rows: 14 },
-	moves: [EAST],
+	// moves: [EAST],
 	snake: [],
-	apple: {x: 16, y: 2}
+	// apple: {x: 16, y: 2}
 });
 
 // 2. We now are ready to add the snake to the game.
@@ -90,6 +90,16 @@ const nextHead = (state: GameState) => state.snake.length === 0
 // before we use the fully fleshed out function.
 const nextSnake = (state: GameState) => [];
 
+// 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
+const next: GameState = spec({
+    table: {
+        rows: prop('rows'),
+        cols: prop('cols')
+    },
+    // moves: nextMoves,
+    snake: nextSnake //,
+    // apple: nextApple
+});
 
 // const nextSnake = (state: GameState) => willCrash(state)
 //     ? []
