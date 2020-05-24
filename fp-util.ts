@@ -38,7 +38,7 @@ const range = (n: number) => (m: number) =>
 const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 
 const spec = (o: any) => (x: any) => Object.keys(o)
-	.map(k => objOf(k)(o[k](x)))
+	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
 // dropFirst, dropLast, id, merge, rnd

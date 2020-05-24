@@ -6,7 +6,7 @@ const base = require('./fp-util');
 
 export type Vector = { x: number, y: number };
 export type Point = { x: number, y: number };
-export type Table = { cols: number, rows: number };
+// export type Table = { cols: number, rows: number };
 
 // Constants
 const NORTH: Vector = { x: 0, y:-1 };
@@ -15,7 +15,8 @@ const EAST: Vector  = { x: 1, y: 0 };
 const WEST: Vector  = { x:-1, y: 0 };
 
 export type GameState = {
-	table: Table,
+    cols: number,
+    rows: number,
 	// moves: Vector[],
 	snake: Point[],
 	// apple: Point
@@ -23,7 +24,8 @@ export type GameState = {
 
 // 1.1 we define the game state object here
 const initializeState = (): GameState => ({
-	table: { cols: 20, rows: 14 },
+    cols: 20,
+    rows: 14,
 	// moves: [EAST],
 	snake: [],
 	// apple: {x: 16, y: 2}
@@ -63,8 +65,8 @@ const initializeState = (): GameState => ({
 const nextHead = (state: GameState) => state.snake.length === 0
     ? { x: 2, y: 2}
     : {
-        x: base.mod(state.table.cols)(state.snake[0].x),
-        y: base.mod(state.table.rows)(state.snake[0].y)
+        x: base.mod(state.cols)(state.snake[0].x),
+        y: base.mod(state.rows)(state.snake[0].y)
     };
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
@@ -92,10 +94,8 @@ const nextSnake = (state: GameState) => [];
 
 // 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
 const next: GameState = base.spec({
-    table: {
-        rows: base.prop('rows'),
-        cols: base.prop('cols')
-    },
+    rows: base.prop('rows'),
+    cols: base.prop('cols'),
     // moves: nextMoves,
     snake: nextSnake //,
     // apple: nextApple

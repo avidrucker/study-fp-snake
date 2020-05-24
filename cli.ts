@@ -1,4 +1,4 @@
-import { Table, Point, GameState } from "./game-core";
+import { Point, GameState } from "./game-core";
 
 const base = require('./fp-util');
 const core = require('./game-core');
@@ -22,12 +22,12 @@ let State: GameState = core.initializeState();
 // is this relevant? https://www.maplesoft.com/support/help/Maple/view.aspx?path=MathApps/ConstantFunction
 
 const Matrix = {
-	make: (table: Table): Table => base.rep(base.rep('.')(table.cols))(table.rows),
+	make: (table: any): any => base.rep(base.rep('.')(table.cols))(table.rows),
 	set: (val: any) => (pos: Point) => base.adjust(pos.y)(base.adjust(pos.x)(base.k(val))),
 	addSnake: (state: GameState): any => base.pipe(...base.mapF(Matrix.set('X'))(state.snake)),
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
-	fromState: (state: GameState): any[][] => base.pipe(() =>
-		Matrix.make(state.table), // Matrix.make(state.table)
+	fromState: (state: GameState): any[][] => base.pipe(
+		Matrix.make, // Matrix.make(state.table)
 		Matrix.addSnake(state)
 	)(state)
 } // TIL: When piping [functions], if there is only one function being passed,
