@@ -27,7 +27,7 @@ const initializeState = (): GameState => ({
     cols: 20,
     rows: 14,
 	// moves: [EAST],
-	snake: [],
+	snake: [], // testing: snake: [{x: 2, y: 2}],
 	// apple: {x: 16, y: 2}
 });
 
@@ -61,13 +61,14 @@ const initializeState = (): GameState => ({
 // the original snake.js for initializing a new snake at row 2 column 2.
 // So, let's go ahead and create nextHead().
 
-// next values based on state
-const nextHead = (state: GameState) => state.snake.length === 0
-    ? { x: 2, y: 2}
-    : {
-        x: base.mod(state.cols)(state.snake[0].x),
-        y: base.mod(state.rows)(state.snake[0].y)
-    };
+// next values based on state // todo: reconstitute nextHead() function
+const nextHead = (state: GameState) => ({ x: 2, y: 2});
+// const nextHead = (state: GameState) => state.snake.length === 0
+//     ? { x: 2, y: 2}
+//     : {
+//         x: base.mod(state.cols)(state.snake[0].x),
+//         y: base.mod(state.rows)(state.snake[0].y)
+//     };
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
 
