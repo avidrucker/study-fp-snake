@@ -22,6 +22,10 @@ export type GameState = {
 	apple: Point
 };
 
+// 2.24 We can now define pointEq()
+const pointEq = (p1: Point) => (p2: Point) =>
+    p1.x === p2.x && p1.y === p2.y;
+
 // 2.23 We define willEat(), which calls pointEq() and nextHead()
 // and also seems to require an apple to exist in the game state
 const willEat = (state: GameState) =>
