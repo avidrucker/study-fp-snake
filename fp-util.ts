@@ -41,9 +41,13 @@ const range = (n: number) => (m: number) =>
 
 const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 
+// 2.30 rnd() is next:
+const rnd = (min: number) => (max: number) =>
+	Math.floor(Math.random() * max) + min;
+
 const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// dropFirst, id, merge, rnd
-module.exports = { adjust, dropLast, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, spec }
+// dropFirst, id, merge
+module.exports = { adjust, dropLast, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, rnd, spec }

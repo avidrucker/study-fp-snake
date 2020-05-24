@@ -74,8 +74,8 @@ const nextApple = (state: GameState) => willEat(state) ? rndPos(state) : state.a
 
 // 2.29 rndPos() is next:
 const rndPos = (table: any) => ({
-    x: rnd(0)(table.cols - 1),
-    y: rnd(0)(table.rows - 1)
+    x: base.rnd(0)(table.cols - 1),
+    y: base.rnd(0)(table.rows - 1)
 });
 
 // 2.15 Let's next look at what initializes a snake onto the board in a
