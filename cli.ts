@@ -44,6 +44,14 @@ const show = () =>
 // original code base
 const step = () => State = core.next(State); // mutation! assignment!
 
+// 2.22 It seems evident that, upon running the code, that
+// nextHead() is to be called in a bunch of places, and, that no snake
+// will be rendered until nextHead() is called, even if an initial snake
+// state of {x: 2, y: 2} is established independently of nextHead().
+// Therefore, I will next build out the functions that require nextHead(),
+// starting with willEat(), followed by pointEq(), followed by willCrash():
+
+
 // 1.3 now that the show() function seems
 // to be implemented, let's try calling it:
 export const main = () =>
