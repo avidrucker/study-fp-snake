@@ -31,6 +31,10 @@ const pointEq = (p1: Point) => (p2: Point) =>
 const willEat = (state: GameState) =>
     pointEq(nextHead(state))(state.apple)
 
+// 2.25 We can now define willCrash()
+const willCrash = (state: GameState) =>
+    state.snake.find(pointEq(nextHead(state)));
+
 // 1.1 we define the game state object here
 const initializeState = (): GameState => ({
     cols: 20,
