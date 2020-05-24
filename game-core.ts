@@ -104,7 +104,16 @@ const nextHead = (state: GameState) => ({ x: 2, y: 2});
 
 // ... First, let's only worry about where nextSnake() is called
 // before we use the fully fleshed out function.
-const nextSnake = (state: GameState) => [];
+// const nextSnake = (state: GameState) => []; // commented out at 2.26
+
+// 2.26 Now that we have defined willCrash() and willEat()
+// we can define nextSnake() for real:
+const nextSnake = (state: GameState) => willCrash(state)
+    ? []
+    : (willEat(state)
+        ? [nextHead(state)].concat(state.snake)
+        : [nextHead(state)].concat(dropLast(state.snake))
+    )
 
 // 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
 const next: GameState = base.spec({
@@ -114,13 +123,6 @@ const next: GameState = base.spec({
     snake: nextSnake //,
     // apple: nextApple
 });
-
-// const nextSnake = (state: GameState) => willCrash(state)
-//     ? []
-//     : (willEat(state)
-//         ? [nextHead(state)].concat(state.snake)
-//         : [nextHead(state)].concat(dropLast(state.snake))
-//     )
 
 // enqueue,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState, next }
