@@ -44,6 +44,7 @@ const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 // 2.30 rnd() is next:
 const rnd = (min: number) => (max: number) =>
 	Math.floor(Math.random() * max) + min;
+// Yay! We now have a game which renders a 1 length long snake!!!
 
 const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
