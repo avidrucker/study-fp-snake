@@ -75,13 +75,14 @@ const initializeState = (): GameState => ({
 // So, let's go ahead and create nextHead().
 
 // next values based on state // todo: reconstitute nextHead() function
-const nextHead = (state: GameState) => ({ x: 2, y: 2});
-// const nextHead = (state: GameState) => state.snake.length === 0
-//     ? { x: 2, y: 2}
-//     : {
-//         x: base.mod(state.cols)(state.snake[0].x),
-//         y: base.mod(state.rows)(state.snake[0].y)
-//     };
+// const nextHead = (state: GameState) => ({ x: 2, y: 2});
+// todo: update nextHead() to be able to incorporate merged movement
+const nextHead = (state: GameState) => state.snake.length === 0
+    ? { x: 2, y: 2}
+    : {
+        x: base.mod(state.cols)(state.snake[0].x),
+        y: base.mod(state.rows)(state.snake[0].y)
+    };
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
 
@@ -112,7 +113,7 @@ const nextSnake = (state: GameState) => willCrash(state)
     ? []
     : (willEat(state)
         ? [nextHead(state)].concat(state.snake)
-        : [nextHead(state)].concat(dropLast(state.snake))
+        : [nextHead(state)].concat(base.dropLast(state.snake))
     )
 
 // 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
