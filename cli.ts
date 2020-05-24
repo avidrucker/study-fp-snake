@@ -38,7 +38,13 @@ const Matrix = {
 const show = () => 
 	console.log('\x1Bc' + Matrix.toString(Matrix.fromState(State)));
 
+// 2.21 Now that next() has been defined, we can call it in the
+// definition of step(), the only place it is called:
+// Note: What I call "core" here is called "Snake" in the
+// original code base
+const step = () => State = core.next(State); // mutation! assignment!
+
 // 1.3 now that the show() function seems
 // to be implemented, let's try calling it:
 export const main = () =>
-	setInterval(() => { show()}, 100);
+	setInterval(() => { step(); show() }, 100);
