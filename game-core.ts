@@ -72,6 +72,12 @@ const initializeState = (): GameState => ({
 // 2.28 nextApple() is next:
 const nextApple = (state: GameState) => willEat(state) ? rndPos(state) : state.apple;
 
+// 2.29 rndPos() is next:
+const rndPos = (table: any) => ({
+    x: rnd(0)(table.cols - 1),
+    y: rnd(0)(table.rows - 1)
+});
+
 // 2.15 Let's next look at what initializes a snake onto the board in a
 // particular position. nextHead() is the function which is responsible in
 // the original snake.js for initializing a new snake at row 2 column 2.
