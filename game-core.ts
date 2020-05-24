@@ -108,5 +108,5 @@ const next: GameState = base.spec({
 //         : [nextHead(state)].concat(dropLast(state.snake))
 //     )
 
-// enqueue, next,
-module.exports = { EAST, NORTH, SOUTH, WEST, initializeState }
+// enqueue,
+module.exports = { EAST, NORTH, SOUTH, WEST, initializeState, next }
