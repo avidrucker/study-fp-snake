@@ -19,8 +19,13 @@ export type GameState = {
     rows: number,
 	// moves: Vector[],
 	snake: Point[],
-	// apple: Point
+	apple: Point
 };
+
+// 2.23 We define willEat(), which calls pointEq() and nextHead()
+// and also seems to require an apple to exist in the game state
+const willEat = (state: GameState) =>
+    pointEq(nextHead(state))(state.apple)
 
 // 1.1 we define the game state object here
 const initializeState = (): GameState => ({
@@ -28,7 +33,7 @@ const initializeState = (): GameState => ({
     rows: 14,
 	// moves: [EAST],
 	snake: [], // testing: snake: [{x: 2, y: 2}],
-	// apple: {x: 16, y: 2}
+	apple: {x: 16, y: 2}
 });
 
 // 2. We now are ready to add the snake to the game.
