@@ -45,6 +45,12 @@ const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 const rnd = (min: number) => (max: number) =>
 	Math.floor(Math.random() * max) + min;
 // Yay! We now have a game which renders a 1 length long snake!!!
+// While this is a major milestone, the snake does not yet "move".
+// This seems like the next logical step... Though it could also
+// be persistence, that prevents the snake from "flashing" in and
+// out of existance (the game could be restarting, or the snake
+// could be crashing). So, for now, we will next go with implementing
+// the movement logic to move the snake as per the initial direction
 
 const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
