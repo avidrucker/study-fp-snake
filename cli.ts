@@ -1,5 +1,6 @@
 import { Point, GameState } from "./game-core";
 
+const readline = require('readline');
 const base = require('./fp-util');
 const core = require('./game-core');
 
@@ -39,10 +40,19 @@ const Matrix = {
 // as desired/expected, which causes the apple to reappear elsewhere and
 // the snake to "grow" in length by 1 segment.
 
+// 3.05 We seem now to be ready for keyboard input. This will involve
+// the user input via the keyboard to be read in via the readline library.
 // Key Events
-// readline...
-// process...
-// ...
+readline.emitKeypressEvents(process.stdin);
+process.stdin.on('keypress', (str, key) => { // question: what is `str` for?
+	if (key.ctrl && key.name === 'c') process.exit()
+	switch( key.name.toUpperCase() ) {
+		case 'W': case 'K': case 'UP': State = base.enqueue(State, core.NORTH); break;
+		case 'A': case 'H': case 'LEFT':  State = base.enqueue(State, core.WEST);  break;
+		case 'S': case 'J': case 'DOWN':  State = base.enqueue(State, core.SOUTH); break;
+		case 'D': case 'L': case 'RIGHT': State = base.enqueue(State, core.EAST);  break;
+	}
+})
 
 // Game Loop
 const show = () => 
