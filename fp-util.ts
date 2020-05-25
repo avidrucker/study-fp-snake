@@ -4,6 +4,9 @@
 const adjust = (n: number) => (f: any) => (xs: any[]) =>
 	mapi((x: any) => (i: number) => i === n ? f(x) : x)(xs);
 
+// 3.02 dropFirst() is next:
+const dropFirst = (xs: any[]) => xs.slice(1);
+
 // 2.27 We are ready to now define dropLast():
 const dropLast = (xs: any[]) =>
 	xs.slice(0, xs.length - 1);
@@ -53,5 +56,5 @@ const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// dropFirst, id, merge
-module.exports = { adjust, dropLast, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, rnd, spec }
+// id, merge
+module.exports = { adjust, dropFirst, dropLast, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, rnd, spec }
