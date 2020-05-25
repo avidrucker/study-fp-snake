@@ -4,15 +4,9 @@
 
 const base = require('./fp-util');
 
+// Types
 export type Vector = { x: number, y: number };
 export type Point = { x: number, y: number };
-
-// Constants
-const NORTH: Vector = { x: 0, y:-1 };
-const SOUTH: Vector = { x: 0, y: 1 };
-const EAST: Vector  = { x: 1, y: 0 };
-const WEST: Vector  = { x:-1, y: 0 };
-
 export type GameState = {
     cols: number,
     rows: number,
@@ -21,10 +15,18 @@ export type GameState = {
 	apple: Point
 };
 
+// Constants
+const NORTH: Vector = { x: 0, y:-1 };
+const SOUTH: Vector = { x: 0, y: 1 };
+const EAST: Vector  = { x: 1, y: 0 };
+const WEST: Vector  = { x:-1, y: 0 };
+
+// Point Operations
 // 2.24 We can now define pointEq()
 const pointEq = (p1: Point) => (p2: Point) =>
     p1.x === p2.x && p1.y === p2.y;
 
+// Booleans
 // 2.23 We define willEat(), which calls pointEq() and nextHead()
 // and also seems to require an apple to exist in the game state
 const willEat = (state: GameState) =>
@@ -34,14 +36,7 @@ const willEat = (state: GameState) =>
 const willCrash = (state: GameState) =>
     state.snake.find(pointEq(nextHead(state)));
 
-// 1.1 we define the game state object here
-const initializeState = (): GameState => ({
-    cols: 20,
-    rows: 14,
-	moves: [EAST],
-	snake: [],
-	apple: {x: 16, y: 2}
-});
+// const validMove = ...
 
 // 2. We now are ready to add the snake to the game.
 
@@ -74,12 +69,6 @@ const nextMoves = (state: GameState) =>
 
 // 2.28 nextApple() is next:
 const nextApple = (state: GameState) => willEat(state) ? rndPos(state) : state.apple;
-
-// 2.29 rndPos() is next:
-const rndPos = (table: any) => ({
-    x: base.rnd(0)(table.cols - 1),
-    y: base.rnd(0)(table.rows - 1)
-});
 
 // 2.15 Let's next look at what initializes a snake onto the board in a
 // particular position. nextHead() is the function which is responsible in
@@ -134,6 +123,23 @@ const nextSnake = (state: GameState) => willCrash(state)
         : [nextHead(state)].concat(base.dropLast(state.snake))
     )
 
+// Randomness
+// 2.29 rndPos() is next:
+const rndPos = (table: any) => ({
+    x: base.rnd(0)(table.cols - 1),
+    y: base.rnd(0)(table.rows - 1)
+});
+
+// Initial State
+// 1.1 we define the game state object here
+const initializeState = (): GameState => ({
+    cols: 20,
+    rows: 14,
+	moves: [EAST],
+	snake: [],
+	apple: {x: 16, y: 2}
+});
+
 // 2.18 Where is nextSnake() called? Inside of next(), which calls spec() :
 const next: GameState = base.spec({
     rows: base.prop('rows'),
@@ -142,6 +148,8 @@ const next: GameState = base.spec({
     snake: nextSnake,
     apple: nextApple
 });
+
+// const enqueue = ...
 
 // enqueue,
 module.exports = { EAST, NORTH, SOUTH, WEST, initializeState, next }

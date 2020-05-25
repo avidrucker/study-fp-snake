@@ -11,36 +11,48 @@ const dropFirst = (xs: any[]) => xs.slice(1);
 const dropLast = (xs: any[]) =>
 	xs.slice(0, xs.length - 1);
 
+// const id = ...
+
 // const k = (x: string) => (y: any): string => x;
 const k = (x: any) => (y: any) => x;
 
+// Note: This is simply called `map()` in the original code
 // This function appears to map a function over a list of x values...
 // Map is curried here to hoist function calls which enables map
 // to apply a set of functions, rather than just one function.
 const mapF = (f: any) => (xs: any[]) => xs.map(f);
 
+// question: what does this function do? why is it named `mapi`?
 const mapi = (f: any) => (xs: any[]) => xs.map((x: any, i: number) => f(x)(i));
 
+// const merge = ...
+
+// modulo arithmetic
 const mod = (x: number) => (y: number) => ((y % x) + x) % x; // http://bit.ly/2oF4mQ7
 
 // 2.19 spec() is composed with objOf(), so we build it next:
 const objOf = (key: string) => (val: any) => ({ [key]: val});
 
+// todo: rename this to be (an) appropriately named (function type)
 export type Bar = (
   (data: string) => void
 );
 
+// question: what does this function do?
 const pipe = (...fns: Array<Bar>) =>
 	(x: any) => [...fns].reduce((acc, f: Bar) => f(acc), x); // : (data: string) => void
 
+// question: what does this function do?
 // 2.20 the call to spec() takes in calls to prop(), so we build it next:
 const prop = (key: string) => (o: any) => o[key];
 
 const range = (n: number) => (m: number) => 
 	Array.apply(null, Array(m - n)).map((_, i) => n + i); // what does "_" mean here?
 
+// repeat (this fulfills the role of a for loop which creates arrays w/ content)
 const rep = (c: any) => (n: number) => mapF(k(c))(range(0)(n));
 
+// creates a random number between a min and max (q: is this inclusive or exclusive???)
 // 2.30 rnd() is next:
 const rnd = (min: number) => (max: number) =>
 	Math.floor(Math.random() * max) + min;
@@ -52,6 +64,7 @@ const rnd = (min: number) => (max: number) =>
 // could be crashing). So, for now, we will next go with implementing
 // the movement logic to move the snake as per the initial direction
 
+// question: what does this function do?
 const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
