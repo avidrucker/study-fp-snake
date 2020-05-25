@@ -91,8 +91,8 @@ const rndPos = (table: any) => ({
 const nextHead = (state: GameState) => state.snake.length === 0
     ? { x: 2, y: 2}
     : {
-        x: base.mod(state.cols)(state.snake[0].x),
-        y: base.mod(state.rows)(state.snake[0].y)
+        x: base.mod(state.cols)(state.snake[0].x) + state.moves[0].x,
+        y: base.mod(state.rows)(state.snake[0].y) + state.moves[0].y
     };
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
