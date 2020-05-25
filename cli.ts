@@ -44,13 +44,14 @@ const Matrix = {
 // the user input via the keyboard to be read in via the readline library.
 // Key Events
 readline.emitKeypressEvents(process.stdin);
+process.stdin.setRawMode(true);
 process.stdin.on('keypress', (str, key) => { // question: what is `str` for?
 	if (key.ctrl && key.name === 'c') process.exit()
 	switch( key.name.toUpperCase() ) {
-		case 'W': case 'K': case 'UP': State = base.enqueue(State, core.NORTH); break;
-		case 'A': case 'H': case 'LEFT':  State = base.enqueue(State, core.WEST);  break;
-		case 'S': case 'J': case 'DOWN':  State = base.enqueue(State, core.SOUTH); break;
-		case 'D': case 'L': case 'RIGHT': State = base.enqueue(State, core.EAST);  break;
+		case 'W': case 'K': case 'UP': State = core.enqueue(State, core.NORTH); break;
+		case 'A': case 'H': case 'LEFT':  State = core.enqueue(State, core.WEST);  break;
+		case 'S': case 'J': case 'DOWN':  State = core.enqueue(State, core.SOUTH); break;
+		case 'D': case 'L': case 'RIGHT': State = core.enqueue(State, core.EAST);  break;
 	}
 })
 
