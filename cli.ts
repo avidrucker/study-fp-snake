@@ -26,7 +26,7 @@ const Matrix = {
 	addSnake: (state: GameState): any => base.pipe(...base.mapF(Matrix.set('X'))(state.snake)),
 	addApple: (state: GameState) => Matrix.set('o')(state.apple), // 3.03 next is addApple()
 	addCrash: (state: GameState) => state.snake.length == 0 ?
-		base.mapF(base.mapF(base.k('#'))) : id, // 3.10 next is addCrash()
+		base.mapF(base.mapF(base.k('#'))) : base.id, // 3.10 next is addCrash()
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
 	fromState: (state: GameState): any[][] => base.pipe(
 		Matrix.make, // Matrix.make(state.table)

@@ -11,7 +11,8 @@ const dropFirst = (xs: any[]) => xs.slice(1);
 const dropLast = (xs: any[]) =>
 	xs.slice(0, xs.length - 1);
 
-// const id = ...
+// 3.11 next is id()
+const id = (x: any) => x;
 
 // const k = (x: string) => (y: any): string => x;
 const k = (x: any) => (y: any) => x;
@@ -78,5 +79,4 @@ const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// id
-module.exports = { adjust, dropFirst, dropLast, k, mapF, mapi, merge, mod, objOf, pipe, prop, range, rep, rnd, spec }
+module.exports = { adjust, dropFirst, dropLast, id, k, mapF, mapi, merge, mod, objOf, pipe, prop, range, rep, rnd, spec }
