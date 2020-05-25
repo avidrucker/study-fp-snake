@@ -149,7 +149,9 @@ const next: GameState = base.spec({
     apple: nextApple
 });
 
-// const enqueue = ...
+// 3.06 enqueue() is next:
+const enqueue = (state: GameState, move: Vector) => validMove(move)(state)
+    ? base.merge(state)({ moves: state.moves.concat([move]) })
+    : state;
 
-// enqueue,
-module.exports = { EAST, NORTH, SOUTH, WEST, initializeState, next }
+module.exports = { EAST, NORTH, SOUTH, WEST, initializeState, enqueue, next }
