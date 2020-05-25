@@ -94,6 +94,14 @@ const nextHead = (state: GameState) => state.snake.length === 0
         x: base.mod(state.cols)(state.snake[0].x) + state.moves[0].x,
         y: base.mod(state.rows)(state.snake[0].y) + state.moves[0].y
     };
+// 3.02 Pretty cool! There is animation now.
+// Some thoughts: It appears that currently, right from the start,
+// the snake attains a length of 2, which is not correct.
+// This may simply be a rendering error, or that the snake is
+// actually increased in length upon game start.
+// That all said, next I believe I can add the apple and snake
+// eating logic which doesn't require any user input, and leave
+// the user input for last. So, apple logic is next.
 
 // 2.16 Since nextHead() calls mod(), we define mod() next
 
