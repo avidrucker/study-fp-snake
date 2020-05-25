@@ -27,6 +27,14 @@ const mapi = (f: any) => (xs: any[]) => xs.map((x: any, i: number) => f(x)(i));
 
 // 3.08 merge() is next
 const merge = (o1: any) => (o2: any) => Object.assign({}, o1, o2);
+// 3.09 Yay! The game appears to work now...
+// ... So, what is the id() function for exactly? It appears
+// to be used for the crash logic. Which also seems somewhat
+// extraneous... but what the heck, why not add it at this point?
+// Yes, I am aware that the game is fully playable at this point,
+// and that extra unneeded complexity is simply that. However,
+// I am curious at to how this will all fit together - so, let's
+// add that crash logic!
 
 // modulo arithmetic
 const mod = (x: number) => (y: number) => ((y % x) + x) % x; // http://bit.ly/2oF4mQ7
