@@ -24,7 +24,7 @@ const WEST: Vector  = { x:-1, y: 0 };
 // Point Operations
 // 2.24 We can now define pointEq()
 const pointEq = (p1: Point) => (p2: Point) =>
-    p1.x === p2.x && p1.y === p2.y;
+    p1.x == p2.x && p1.y == p2.y;
 
 // Booleans
 // 2.23 We define willEat(), which calls pointEq() and nextHead()
@@ -36,10 +36,11 @@ const willEat = (state: GameState) =>
 const willCrash = (state: GameState) =>
     state.snake.find(pointEq(nextHead(state)));
 
-// const validMove = ...
+// 3.07 validMove() is next:
+const validMove = (move: Vector) => (state: GameState) =>
+    state.moves[0].x + move.x != 0 || state.moves[0].y + move.y != 0;
 
 // 2. We now are ready to add the snake to the game.
-
 // 2.1 In order to figure out where best to start, let's look
 // at where the snake is stored/added (in/to the state).
 // Looking at the original cli.js, I can see that the
@@ -63,7 +64,8 @@ const willCrash = (state: GameState) =>
 // No errors occur, and the board renders, but still, no snake to be seen.
 // What is necessary in order for us to get a snake on the board?
 
-// 3.01 nextMoves() s next:
+// Next Values Based on State
+// 3.01 nextMoves() is next:
 const nextMoves = (state: GameState) =>
     state.moves.length > 1 ? base.dropFirst(state.moves) : state.moves;
 
