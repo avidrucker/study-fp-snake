@@ -16,7 +16,7 @@ const WEST: Vector  = { x:-1, y: 0 };
 export type GameState = {
     cols: number,
     rows: number,
-	// moves: Vector[],
+	moves: Vector[],
 	snake: Point[],
 	apple: Point
 };
@@ -38,7 +38,7 @@ const willCrash = (state: GameState) =>
 const initializeState = (): GameState => ({
     cols: 20,
     rows: 14,
-	// moves: [EAST],
+	moves: [EAST],
 	snake: [],
 	apple: {x: 16, y: 2}
 });
@@ -67,6 +67,10 @@ const initializeState = (): GameState => ({
 // ...
 // No errors occur, and the board renders, but still, no snake to be seen.
 // What is necessary in order for us to get a snake on the board?
+
+// 3.01 nextMoves() s next:
+const nextMoves = (state: GameState) =>
+    state.moves.length > 1 ? base.dropFirst(state.moves) : state.moves;
 
 // 2.28 nextApple() is next:
 const nextApple = (state: GameState) => willEat(state) ? rndPos(state) : state.apple;
@@ -126,7 +130,7 @@ const nextSnake = (state: GameState) => willCrash(state)
 const next: GameState = base.spec({
     rows: base.prop('rows'),
     cols: base.prop('cols'),
-    // moves: nextMoves,
+    moves: nextMoves,
     snake: nextSnake,
     apple: nextApple
 });
