@@ -25,7 +25,8 @@ const mapF = (f: any) => (xs: any[]) => xs.map(f);
 // question: what does this function do? why is it named `mapi`?
 const mapi = (f: any) => (xs: any[]) => xs.map((x: any, i: number) => f(x)(i));
 
-// const merge = ...
+// 3.08 merge() is next
+const merge = (o1: any) => (o2: any) => Object.assign({}, o1, o2);
 
 // modulo arithmetic
 const mod = (x: number) => (y: number) => ((y % x) + x) % x; // http://bit.ly/2oF4mQ7
@@ -69,5 +70,5 @@ const spec = (o: any) => (x: any) => Object.keys(o)
 	.map((k: string) => objOf(k)(o[k](x)))
 	.reduce((acc, o) => Object.assign(acc, o))
 
-// id, merge
-module.exports = { adjust, dropFirst, dropLast, k, mapF, mapi, mod, objOf, pipe, prop, range, rep, rnd, spec }
+// id
+module.exports = { adjust, dropFirst, dropLast, k, mapF, mapi, merge, mod, objOf, pipe, prop, range, rep, rnd, spec }
