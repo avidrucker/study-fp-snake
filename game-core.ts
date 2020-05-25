@@ -83,7 +83,7 @@ const nextHead = (state: GameState) => state.snake.length === 0
         x: base.mod(state.cols)(state.snake[0].x) + state.moves[0].x,
         y: base.mod(state.rows)(state.snake[0].y) + state.moves[0].y
     };
-// 3.02 Pretty cool! There is animation now.
+// 3.03 Pretty cool! There is animation now.
 // Some thoughts: It appears that currently, right from the start,
 // the snake attains a length of 2, which is not correct.
 // This may simply be a rendering error, or that the snake is
