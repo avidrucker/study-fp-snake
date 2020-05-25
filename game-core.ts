@@ -6,7 +6,6 @@ const base = require('./fp-util');
 
 export type Vector = { x: number, y: number };
 export type Point = { x: number, y: number };
-// export type Table = { cols: number, rows: number };
 
 // Constants
 const NORTH: Vector = { x: 0, y:-1 };
@@ -40,7 +39,7 @@ const initializeState = (): GameState => ({
     cols: 20,
     rows: 14,
 	// moves: [EAST],
-	snake: [], // testing: snake: [{x: 2, y: 2}],
+	snake: [],
 	apple: {x: 16, y: 2}
 });
 
@@ -83,8 +82,7 @@ const rndPos = (table: any) => ({
 // the original snake.js for initializing a new snake at row 2 column 2.
 // So, let's go ahead and create nextHead().
 
-// next values based on state // todo: reconstitute nextHead() function
-// const nextHead = (state: GameState) => ({ x: 2, y: 2});
+// next values based on state
 // todo: update nextHead() to be able to incorporate merged movement
 const nextHead = (state: GameState) => state.snake.length === 0
     ? { x: 2, y: 2}
@@ -111,7 +109,6 @@ const nextHead = (state: GameState) => state.snake.length === 0
 // - willCrash(), find(), pointEq(),
 // - willEat(), concat(), dropLast()
 // This is a lot, so ...
-
 // ... First, let's only worry about where nextSnake() is called
 // before we use the fully fleshed out function.
 // const nextSnake = (state: GameState) => []; // commented out at 2.26
@@ -130,7 +127,7 @@ const next: GameState = base.spec({
     rows: base.prop('rows'),
     cols: base.prop('cols'),
     // moves: nextMoves,
-    snake: nextSnake, //,
+    snake: nextSnake,
     apple: nextApple
 });
 

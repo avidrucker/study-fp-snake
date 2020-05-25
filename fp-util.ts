@@ -27,11 +27,8 @@ export type Bar = (
   (data: string) => void
 );
 
-// resolve f is not a function bug: attempt 1: https://stackoverflow.com/questions/12734660/a-typed-array-of-functions
 const pipe = (...fns: Array<Bar>) =>
 	(x: any) => [...fns].reduce((acc, f: Bar) => f(acc), x); // : (data: string) => void
-// const pipe = (...fns: any[]) =>
-//   fns.reduce((prevFn, nextFn) => (value: any) => nextFn(prevFn(value)));
 
 // 2.20 the call to spec() takes in calls to prop(), so we build it next:
 const prop = (key: string) => (o: any) => o[key];

@@ -17,10 +17,6 @@ let State: GameState = core.initializeState();
 // we need a function to display the board...
 // But, we don't yet have any Matrix functions.
 // Let's fix that:
-
-// this appears to be called "asConstant" or "the constant function" ... what is it for?
-// is this relevant? https://www.maplesoft.com/support/help/Maple/view.aspx?path=MathApps/ConstantFunction
-
 const Matrix = {
 	make: (table: any): any => base.rep(base.rep('.')(table.cols))(table.rows),
 	set: (val: any) => (pos: Point) => base.adjust(pos.y)(base.adjust(pos.x)(base.k(val))),
@@ -30,10 +26,7 @@ const Matrix = {
 		Matrix.make, // Matrix.make(state.table)
 		Matrix.addSnake(state)
 	)(state)
-} // TIL: When piping [functions], if there is only one function being passed,
-// keep in mind that a callback may be necessary `() => {}` to support the
-// sequence to be hoisted (in the current case above, we are creating an empty
-// function to start a simulated sequence)
+}
 
 const show = () => 
 	console.log('\x1Bc' + Matrix.toString(Matrix.fromState(State)));
@@ -50,7 +43,6 @@ const step = () => State = core.next(State); // mutation! assignment!
 // state of {x: 2, y: 2} is established independently of nextHead().
 // Therefore, I will next build out the functions that require nextHead(),
 // starting with willEat(), followed by pointEq(), followed by willCrash():
-
 
 // 1.3 now that the show() function seems
 // to be implemented, let's try calling it:
