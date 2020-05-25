@@ -25,13 +25,14 @@ const Matrix = {
 	set: (val: any) => (pos: Point) => base.adjust(pos.y)(base.adjust(pos.x)(base.k(val))),
 	addSnake: (state: GameState): any => base.pipe(...base.mapF(Matrix.set('X'))(state.snake)),
 	addApple: (state: GameState) => Matrix.set('o')(state.apple), // 3.03 next is addApple()
-	// addCrash: ...
+	addCrash: (state: GameState) => state.snake.length == 0 ?
+		base.mapF(base.mapF(base.k('#'))) : id, // 3.10 next is addCrash()
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
 	fromState: (state: GameState): any[][] => base.pipe(
 		Matrix.make, // Matrix.make(state.table)
 		Matrix.addSnake(state),
-		Matrix.addApple(state)
-		// Matrix.addCrash(state)
+		Matrix.addApple(state),
+		Matrix.addCrash(state)
 	)(state)
 }
 // 3.04 Beautiful! The snake now starts out visually at a length of 1,
