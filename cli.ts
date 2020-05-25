@@ -23,16 +23,21 @@ const Matrix = {
 	make: (table: any): any => base.rep(base.rep('.')(table.cols))(table.rows),
 	set: (val: any) => (pos: Point) => base.adjust(pos.y)(base.adjust(pos.x)(base.k(val))),
 	addSnake: (state: GameState): any => base.pipe(...base.mapF(Matrix.set('X'))(state.snake)),
-	// addApple: ...
+	addApple: (state: GameState) => Matrix.set('o')(state.apple), // 3.03 next is addApple()
 	// addCrash: ...
 	toString: (xsxs: any[][]) => xsxs.map(xs => xs.join(' ')).join('\r\n'),
 	fromState: (state: GameState): any[][] => base.pipe(
 		Matrix.make, // Matrix.make(state.table)
-		Matrix.addSnake(state)
-		// Matrix.addApple(state)
+		Matrix.addSnake(state),
+		Matrix.addApple(state)
 		// Matrix.addCrash(state)
 	)(state)
 }
+// 3.04 Beautiful! The snake now starts out visually at a length of 1,
+// which is the desired behavior (and render result). The default placement
+// of the apple allows the snake to hit it, and the snake "eats" the apple
+// as desired/expected, which causes the apple to reappear elsewhere and
+// the snake to "grow" in length by 1 segment.
 
 // Key Events
 // readline...
